@@ -2,8 +2,8 @@ const http = require('http');
 const fs = require('fs');
 
 function makegetRequest(url, file) {
-    const fileWriteStream = fs.createWriteStream(file);
     return new Promise((resolve, reject) => {
+        const fileWriteStream = fs.createWriteStream(file);
         http.get(url, (res) => {
             res.on('data', (chunk) => {
                 fileWriteStream.write(chunk);
@@ -12,14 +12,13 @@ function makegetRequest(url, file) {
                 fileWriteStream.end();
                 resolve();
             })
-        }).on('error', (err) => {
+            // OR
+            // res.pipe(fileWriteStream);
+            // resolve();
+        }).on('error', (err)=> {
             reject(err);
-        })
+        });
     });
-}
-
-async function apiCall(url, file) {
-    await makegetRequest(url, file);
 }
 
 fs.readFile('./urls.txt', 'utf8', (err, data)=> {
@@ -39,7 +38,10 @@ fs.readFile('./urls.txt', 'utf8', (err, data)=> {
         // console.log(urlsWithFilesName);
 
         urlsWithFilesName.forEach(({url, file}) => {
-            apiCall(url, file);
+            makegetRequest(url, file).catch((err) => {
+                console.log("An error occured!");
+                console.log(err);
+            })
         });
     }
 });

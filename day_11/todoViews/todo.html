@@ -1,0 +1,26 @@
+<!-- BEGIN: abpxx6d04wxr -->
+
+<!-- Existing code above -->
+
+<div class="container">
+    <h1>Welcome to the ultimate useless todo</h1>
+    <p>But we will make it awesome❤️</p>
+
+    <form action="/todoData" method="POST">
+        <input type="text" id="userInput" name="todo" placeholder="Enter your todo" />
+        <select name="priority" id="prioritySelector">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <button type="submit" id="submitTodo">Add Todo</button>
+    </form>
+
+    <div id="todoList">
+        <!-- Todo items will be added here -->
+    </div>
+</div>
+
+<script src="./todoScript.js"></script>
+
+<!-- END: abpxx6d04wxr -->

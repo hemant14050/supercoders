@@ -1,0 +1,16 @@
+1. make new dir >> my_test
+2. go in it >> cd my_test
+3. create index.js
+4. run commands >> 
+npm init -y
+npm install jest
+5. add scripts in package.json like this >>
+"scripts": {
+    "test": "jest",
+    "start": "node index.js"
+ },
+6. make files suppose you want to test addition.js
+make file named addition.test.js
+write testing code in it.
+7. run following command to test with jest >>
+npm jest 
